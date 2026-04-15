@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlie Tech Studio</title>
+
+<style>
+/* GLOBAL STYLES */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Clean Mesh Gradient Background */
+    background-color: #f8fafc;
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(225,39%,30%,0.03) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(225,39%,20%,0.03) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(225,39%,10%,0.03) 0, transparent 50%);
+    scroll-behavior: smooth;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #1d4ed8;
+    margin: 0 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #1e3a8a;
+}
+
+/* HERO SECTION */
+.hero {
+    height: 100vh;
+    /* Dark gradient overlay + High-quality Tech Image */
+    background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(30, 58, 138, 0.7)), 
+                url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax scrolling effect */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    opacity: 0.9;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 14px 35px;
+    margin: 10px;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    box-shadow: 0 10px 20px rgba(34,197,94,0.3);
+}
+
+.btn-secondary {
+    background: white;
+    color: #1d4ed8;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* SECTIONS */
+.section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.alt-bg {
+    background: rgba(241, 245, 249, 0.6);
+}
+
+/* PRODUCT CARDS */
+.product {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 50px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    transition: 0.4s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    width: 100%;
+    max-width: 350px;
+    margin: 30px 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* BADGES */
+.badge {
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.best { background: #fee2e2; color: #ef4444; }
+.new { background: #dbeafe; color: #3b82f6; }
+
+/* STEPS & TESTIMONIALS */
+.steps, .testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.step, .testimonial {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 250px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+}
+
+.testimonial { font-style: italic; color: #475569; }
+
+/* CONTACT SECTION */
+.contact a { margin: 10px; }
+
+/* FOOTER */
+footer {
+    background: #0f172a;
+    color: #94a3b8;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+footer strong { color: white; }
+
+/* SCROLL ANIMATION CLASSES */
+.fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div><strong>Charlie Tech</strong></div>
+    <div>
+        <a href="#apps">Apps</a>
+        <a href="#how">How It Works</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+    </div>
+</div>
+
+<div class="hero">
+    <h1>Charlie Tech Studio</h1>
+    <p>Building simple tools for everyday life</p>
+    <a href="#apps" class="btn btn-primary">Explore Featured Tools</a>
+</div>
+
+<div class="section fade" id="apps">
+    <h2 style="font-size: 2.5rem;">Featured Tools</h2>
+    <p>Digital tools for everyday-life</p>
+</div>
+
+<div class="section fade">
+    <div class="product">
+        <span class="badge best">Best Seller</span>
+        <h2>Charlie Digital Clock</h2>
+        <img src="clock.png" alt="Digital Clock">
+        <p>Stay focused and never miss time again.</p>
+        
+        <div style="max-width: 200px; margin: 0 auto; text-align: left; padding-bottom: 20px;">
+            <div>✔ Alarm feature</div>
+            <div>✔ Lightweight</div>
+        </div>
+
+        <p><strong style="font-size: 1.5rem;">$4.99</strong></p>
+
+        <a href="http://sandilejacobs.gumroad.com/l/hxqgbm" target="_blank" class="btn btn-primary">
+            View Product
+        </a>
+    </div>
+</div>
+
+<div class="section alt-bg fade">
+    <div class="product">
+        <span class="badge new">New Release</span>
+        <h2>Charlie Expense Tracker</h2>
+        <img src="expense.png" alt="Expense Tracker">
+        <p>Take control of your money today.</p>
+
+        <div style="max-width: 200px; margin: 0 auto; text-align: left; padding-bottom: 20px;">
+            <div>✔ Budget control</div>
+            <div>✔ Simple UI</div>
+        </div>
+
+        <p><strong style="font-size: 1.5rem;">$9.00</strong></p>
+
+        <a href="http://sandilejacobs.gumroad.com/l/mpxueo" target="_blank" class="btn btn-primary">
+            View Product
+        </a>
+    </div>
+</div>
+
+<div class="section fade" id="how">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <h3 style="color: #1d4ed8;">01</h3>
+            <p>Download your app instantly after purchase.</p>
+        </div>
+        <div class="step">
+            <h3 style="color: #1d4ed8;">02</h3>
+            <p>Enter your unique license key to activate.</p>
+        </div>
+        <div class="step">
+            <h3 style="color: #1d4ed8;">03</h3>
+            <p>Start streamlining your daily routine.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section alt-bg fade" id="testimonials">
+    <h2>What Users Say</h2>
+    <div class="testimonials">
+        <div class="testimonial">"Simple and very useful! Exactly what I was looking for."</div>
+        <div class="testimonial">"Helps me stay focused daily. The clock is a game-changer."</div>
+        <div class="testimonial">"Easy money management. No complex menus or clutter."</div>
+    </div>
+</div>
+
+<div class="section fade contact" id="contact">
+    <h2>Contact Me</h2>
+    <p>Have questions? Reach out via your preferred platform:</p>
+
+    <a href="https://wa.me/27682654241" target="_blank" class="btn btn-primary">
+        💬 WhatsApp
+    </a>
+
+    <a href="https://facebook.com/Charles Sandile Jacobs" target="_blank" class="btn btn-secondary">
+        📘 Facebook
+    </a>
+
+    <a href="mailto:charlessandilejacobs540@gmail.com" class="btn btn-secondary">
+        ✉️ Email
+    </a>
+</div>
+
+<footer>
+    <p><strong>© 2026 Charlie Tech Studio</strong></p>
+    <p>Created by Charles Jacobs | More apps coming soon</p>
+</footer>
+
+<script>
+/* Smoother Fade-In Script */
+const faders = document.querySelectorAll('.fade');
+
+const appearOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('show');
+        appearOnScroll.unobserve(entry.target);
+    });
+}, appearOptions);
+
+faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+});
+</script>
+
+</body>
+</html>
